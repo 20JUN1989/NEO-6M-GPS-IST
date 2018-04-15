@@ -77,21 +77,23 @@ void displayInfo()
    {
     hr-=12;
    }
-   if(gps.time.minute()>29);
-   {
-    hr+=1;
-   }
+
    
    int mn= (gps.time.minute()+30);
    if(mn>59)
    {
     mn -=60;
    }
-   
+  
    int sec= (gps.time.second());
-   
+   // display ////////////////////////////////////////////////
     if (hr < 10) Serial.print(F("0"));
-    Serial.print(hr);
+    if(gps.time.minute()>29 ) Serial.print (hr+=1); 
+   else 
+   {
+   Serial.print (hr);
+   }
+   
     Serial.print(F(":"));
     if (mn < 10) Serial.print(F("0"));
     Serial.print(mn);
